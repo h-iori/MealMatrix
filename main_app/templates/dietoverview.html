@@ -1,0 +1,258 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MealMatrix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Font Awesome CDN for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<style>
+    .navbar-brand img {
+        height: 40px; /* Set logo height */
+        background-color: inherit; /* Match the navbar's background color */
+        mix-blend-mode: multiply; /* Blend the logo with the navbar */
+        border: none; /* Remove any borders */
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        transition: opacity 0.3s ease; /* Optional: Smooth hover effect */
+    }
+    
+    
+    /* Styling for the logo */
+    .footer-logo {
+        width: 200px; /* Adjust width for smaller size */
+        height: auto; /* Maintain aspect ratio */
+         /* Fading border effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    }
+
+    .footer-logo:hover {
+        transform: scale(1.1); /* Slightly enlarge on hover */
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Enhance glow effect on hover */
+    }
+</style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-5" href="{% url "home" %}">
+                <img src="{% static "images/whitelogo.png" %}" class="navbar-logo" alt="MealMatrix Logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="{% url "home" %}" style="margin-left: 40px;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url "dietplan" %}" style="margin-left: 40px;">Diet Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="{% url "contact" %}" style="margin-left: 40px;">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="{% url "about" %}" style="margin-left: 40px;">About</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                <a href="{% url "dashboard" %}"><button class="btn btn-outline-success px-5" style="margin-right: 20px;"><i class="bi bi-person-plus"
+                    style="margin-right: 8px;"></i>Dashboard</button></a>
+                <a href="{% url "logout" %}"><button class="btn btn-outline-danger px-5" style="margin-right: 60px;"><i
+                    class="bi bi-box-arrow-in-right" style="margin-right: 8px;"></i>Logout</button></a>
+
+                {% else %}
+                
+                <a href="{% url "signup" %}"><button class="btn btn-outline-warning px-5" style="margin-right: 20px;"><i class="bi bi-person-plus"
+                            style="margin-right: 8px;"></i> Sign Up</button></a>
+                <a href="{% url "login" %}"><button class="btn btn-outline-warning px-5" style="margin-right: 60px;"><i
+                            class="bi bi-box-arrow-in-right" style="margin-right: 8px;"></i> Login</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="text-warning fw-bold">Diet Plans Overview</h2>
+            <p class="text-muted">Discover personalized diet plans designed to fit your unique lifestyle and goals.</p>
+        </div>
+    
+        <div class="row g-5">
+            <!-- Card 1: Veg Diet for Men -->
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg h-100">
+                    <a href="{% url "dashboard" %}" class="text-decoration-none">
+                    <img src=" {% static "images/manfruit.png" %}" class="card-img-top rounded" alt="Veg Diet for Men">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning text-center">Veg Diet for Men</h4>
+                        <p class="card-text text-muted text-center">High-fat, low-carb plan for weight loss.</p>
+                    </a>
+                    </div>
+                   
+                </div>
+            </div>
+    
+            <!-- Card 2: Veg Diet for Women -->
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg h-100">
+                    <a href="{% url "dashboard" %}" class="text-decoration-none">
+                    <img src=" {% static 'images/womenfruit.jpeg'%}" class="card-img-top rounded" alt="Veg Diet for Women">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning text-center">Veg Diet for Women</h4>
+                        <p class="card-text text-muted text-center">Plant-based diet for health and ethics.</p>
+                    </a>
+                    </div>
+                    
+                </div>
+            </div>
+    
+            <!-- Card 3: Gain Weight -->
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg h-100">
+                    <a href="{% url "dashboard" %}" class="text-decoration-none">
+                    <img src=" {% static 'images/carb.png'%}" class="card-img-top rounded" alt="Gain Weight">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning text-center">Gain Weight</h4>
+                        <p class="card-text text-muted text-center">Heart-healthy diet rich in fruits and fish.</p>
+                    </a>
+                    </div>
+                   
+                </div>
+            </div>
+    
+            <!-- Card 4: Lose Weight -->
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg h-100">
+                    <a href="{% url "dashboard" %}" class="text-decoration-none">
+                    <img src=" {% static 'images/protein.png'%}" class="card-img-top rounded" alt="Lose Weight">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning text-center">Lose Weight</h4>
+                        <p class="card-text text-muted text-center">Focus on whole foods mimicking ancient diets.</p>
+                    </a>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="container my-5">
+        <div class="text-center mb-4">
+            <h3 class="text-warning">What Our Clients Say</h3>
+            <p class="text-muted">Real stories from real people who transformed their lives.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-lg text-center">
+                    <img src=" {% static 'images/man.png'%}" class="card-img-top rounded-circle" alt="Client 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Maggie Hair Guy</h5>
+                        <p class="card-text text-muted">"MealMatrix helped me lose 20 lbs in just 2 months! The plans were easy to follow."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg text-center">
+                    <img src=" {% static 'images/women.png'%}" class="card-img-top rounded-circle" alt="Client 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Black Demon</h5>
+                        <p class="card-text text-muted">"The diet plan for women really worked for me! I feel healthier and more energetic."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg text-center">
+                    <img src=" {% static 'images/women.png'%}" class="card-img-top rounded-circle" alt="Client 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Black Demon 2</h5>
+                        <p class="card-text text-muted">"MealMatrix provided the perfect diet for gaining muscle. I saw incredible results."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <!-- footer -->
+
+        <footer class="bg-dark text-light pt-5 pb-3">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-auto">
+                        <a href="{% url "home" %}">
+                        <img src=" {% static "images/whitelogo.png" %}" alt="MealMatrix Logo" class="footer-logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- About Us Section -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <h5 class="text-warning">About MealMatrix</h5>
+                        <p>MealMatrix empowers your health journey with personalized meal plans, expert guidance, and holistic wellness support. Start your transformation today!</p>
+                    </div>
+        
+                    <!-- Quick Links Section -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h5 class="text-warning">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "home" %}" class="text-light text-decoration-none">Home</a></li>
+                            <li><a href="{% url "dietplan" %}" class="text-light text-decoration-none">Diet Plan</a></li>
+                            <li><a href="{% url "contact" %}" class="text-light text-decoration-none">Contact</a></li>
+                            <li><a href="{% url "about" %}" class="text-light text-decoration-none">About</a></li>
+                        </ul>
+                    </div>
+        
+                    <!-- Contact Information Section -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <h5 class="text-warning">Contact Us</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-envelope me-2"></i>harshupadhyay9702@gmail.com</li>
+                            <li><i class="fas fa-phone me-2"></i>+1 (234) 567-8901</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Titwala East</li>
+                        </ul>
+                    </div>
+        
+                    <!-- Social Media Section -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-warning">Follow Us</h5>
+                        <div class="d-flex">
+                            <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-youtube fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+        
+                <hr class="border-light">
+        
+                <div class="row">
+                    <div class="col text-center">
+                        <p class="mb-0">© 2024 MealMatrix. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

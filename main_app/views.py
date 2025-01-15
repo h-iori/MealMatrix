@@ -81,7 +81,7 @@ def dashboard(request):
         diet_goal = request.POST.get("diet_goal")
         time_period = request.POST.get("diet_time_period")
         # API request
-        api_key='YOUR API KEY' 
+        api_key='sk-XtHwCJwUQwFlCrKmDeF5C6A94760496f9c367975862c05Ed' 
         client = OpenAI(api_key=api_key)
         client.base_url= "https://api.inferkit.ai/v1"  #alternate for openai api inferkit.ai
         prompt = (
